@@ -68,7 +68,7 @@ class DynamoDbQuery:
         Yields individual deserialised items from the query, handling pagination.
         """
         for page in self._pages:
-            self._logger.writeLog(
+            self._logger.write_log(
                 "DDB0050",
                 None,
                 {
