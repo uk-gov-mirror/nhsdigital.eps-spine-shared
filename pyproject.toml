@@ -3,10 +3,10 @@ name = "eps-spine-shared"
 version = "0.1.0"
 description = "A library to hold code shared by EPS and Spine"
 authors = [
+    {name = "Phil Gee", email = "phil.gee@nhs.net"},
     {name = "Jolo Das", email = "jolo.das@nhs.net"},
     {name = "Anthony Brown", email = "anthony.brown8@nhs.net"},
     {name = "Matthew Popat", email = "matthew.popat1@nhs.net"},
-    {name = "Phil Gee", email = "phil.gee@nhs.net"},
     {name = "Jack Spagnoli", email = "jack.spagnoli1@nhs.net"},
 ]
 readme = "README.md"
