@@ -11,7 +11,15 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.10.12"
-dependencies = ["boto3 (>=1.26.159,<2.0.0)", "botocore (>=1.29.159,<1.30.0)", "simplejson (>=3.17.2,<4.0.0)", "python-dateutil (>=2.7.0.post0,<3.0.0)", "six (>=1.5,<2.0.0)"]
+dependencies = [
+    "boto3 (>=1.26.159,<2.0.0)",
+    "botocore (>=1.29.159,<1.30.0)",
+    "lxml (==4.6.3)",
+    "python-dateutil (>=2.7.0.post0,<3.0.0)",
+    "pytz (==2020.4)",
+    "simplejson (>=3.17.2,<4.0.0)",
+    "six (>=1.5,<2.0.0)"
+]
 
 [tool.poetry]
 packages = [{include = "eps_spine_shared", from = "src"}]

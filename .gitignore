@@ -23,3 +23,6 @@ cover/
 # Build
 dist/
 __pycache__/
+
+# Temp
+agents.md

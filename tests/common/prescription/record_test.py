@@ -4,6 +4,9 @@ from datetime import datetime, timedelta
 from unittest.case import TestCase
 from unittest.mock import MagicMock
 
+from parameterized.parameterized import parameterized
+
+from eps_spine_shared.common import indexes
 from eps_spine_shared.common.prescription import fields
 from eps_spine_shared.common.prescription.record import PrescriptionRecord
 from eps_spine_shared.common.prescription.repeat_dispense import RepeatDispenseRecord
@@ -11,7 +14,7 @@ from eps_spine_shared.common.prescription.repeat_prescribe import RepeatPrescrib
 from eps_spine_shared.common.prescription.single_prescribe import SinglePrescribeRecord
 from eps_spine_shared.common.prescription.types import PrescriptionTreatmentType
 from eps_spine_shared.errors import EpsSystemError
-from eps_spine_shared.nhsfundamentals.timeutilities import TimeFormats
+from eps_spine_shared.nhsfundamentals.time_utilities import TimeFormats
 from eps_spine_shared.testing.mock_logger import MockLogObject
 
 
@@ -268,7 +271,6 @@ class PrescriptionRecordTest(TestCase):
         """
         Test that resetting the current instance chooses the correct instance.
         """
-
         prescription = load_test_example_json(self.mock_log_object, "50EE48-B83002-490F7.json")
         self.assertEqual(prescription.current_issue_number, 4)
         (old, new) = prescription.reset_current_instance()
@@ -369,13 +371,122 @@ class PrescriptionRecordTest(TestCase):
         """
         Test that a prescription with a future start date is marked as FUTURE_DATED_PRESCRIPTION.
         """
-
         prescription = load_test_example_json(self.mock_log_object, "0DA698-A83008-F50593.json")
 
         future_time = datetime.now() + timedelta(days=10)
         prescription.set_initial_prescription_status(future_time)
 
         self.assertEqual(prescription.get_issue(1).status, "9001")
+
+    def test_add_index_to_record(self):
+        """
+        Test that we can add an index to the record.
+        """
+        prescription = PrescriptionRecord(self.mock_log_object, "test")
+        prescription.prescription_record = {}
+
+        prescription.add_index_to_record({"testIndex": "testValue"})
+
+        self.assertEqual(
+            prescription.prescription_record.get(fields.FIELD_INDEXES), {"testIndex": "testValue"}
+        )
+
+    def test_increment_scn(self):
+        """
+        Test that we can increment the SCN.
+        """
+        prescription = PrescriptionRecord(self.mock_log_object, "test")
+        prescription.prescription_record = {"SCN": 5}
+
+        prescription.increment_scn()
+
+        self.assertEqual(prescription.prescription_record.get("SCN"), 6)
+
+    def test_add_document_refs(self):
+        """
+        Test that we can add document refs.
+        """
+        prescription = PrescriptionRecord(self.mock_log_object, "test")
+        prescription.prescription_record = {}
+
+        prescription.add_document_references(["doc1", "doc2"])
+
+        self.assertEqual(
+            prescription.prescription_record.get(fields.FIELDS_DOCUMENTS), ["doc1", "doc2"]
+        )
+
+    @parameterized.expand(
+        [
+            ("upper", indexes.INDEX_NEXTACTIVITY, "next_activity_nad"),
+            ("lower", indexes.INDEX_NEXTACTIVITY.lower(), "next_activity_nad"),
+            ("invalid", "invalid_index", None),
+        ]
+    )
+    def test_return_next_activity_nad_bin(self, _, index_key, expected):
+        """
+        Test that we can return the next activity NAD bin.
+        """
+        prescription = PrescriptionRecord(self.mock_log_object, "test")
+        prescription.prescription_record = {fields.FIELD_INDEXES: {index_key: "next_activity_nad"}}
+
+        nad_bin = prescription.return_next_activity_nad_bin()
+
+        self.assertEqual(nad_bin, expected)
+
+    def test_name_map_on_create(self):
+        """
+        Test that the names are mapped correctly when creating a record.
+        """
+        context = MagicMock()
+        context.agentOrganization = "testOrg"
+        context.prescriptionRepeatHigh = "repeatHigh"
+        context.daysSupplyValidLow = "daysLow"
+        context.daysSupplyValidHigh = "daysHigh"
+        prescription = PrescriptionRecord(self.mock_log_object, "test")
+
+        prescription.name_map_on_create(context)
+
+        self.assertEqual(context.prescribingOrganization, "testOrg")
+        self.assertEqual(context.maxRepeats, "repeatHigh")
+        self.assertEqual(context.dispenseWindowLowDate, "daysLow")
+        self.assertEqual(context.dispenseWindowHighDate, "daysHigh")
+
+    def test_return_prechange_issue_status_dict(self):
+        """
+        Test that we can return the pre-change issue status dict.
+        """
+        prescription = PrescriptionRecord(self.mock_log_object, "test")
+        prescription.pre_change_issue_status_dict = "pre_change_status_dict"
+
+        result = prescription.return_prechange_issue_status_dict()
+
+        self.assertEqual(result, "pre_change_status_dict")
+
+    def test_return_prechange_current_issue(self):
+        """
+        Test that we can return the pre-change current issue.
+        """
+        prescription = PrescriptionRecord(self.mock_log_object, "test")
+        prescription.pre_change_current_issue = "pre_change_current_issue"
+
+        result = prescription.return_prechange_current_issue()
+
+        self.assertEqual(result, "pre_change_current_issue")
+
+    def test_create_initial_record(self):
+        """
+        Test that we can create the initial record.
+        """
+        prescription = PrescriptionRecord(self.mock_log_object, "test")
+        context = MagicMock()
+        prescription.create_initial_record(context)
+
+        self.assertTrue(
+            all(
+                field in prescription.prescription_record[fields.FIELD_PRESCRIPTION]
+                for field in fields.PRESCRIPTION_DETAILS
+            )
+        )
 
 
 class PrescriptionRecordChangeLogTest(TestCase):

@@ -13,7 +13,6 @@ class BuildIndexesTest(TestCase):
         """
         Set up all valid values - tests will overwrite these where required.
         """
-
         mock = Mock()
         attrs = {"writeLog.return_value": None}
         mock.configure_mock(**attrs)

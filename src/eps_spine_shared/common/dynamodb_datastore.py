@@ -28,7 +28,7 @@ from eps_spine_shared.common.dynamodb_common import (
 from eps_spine_shared.common.dynamodb_index import EpsDynamoDbIndex, PrescriptionStatus
 from eps_spine_shared.common.dynamodb_query import Conditions, DynamoDbQuery
 from eps_spine_shared.logger import EpsLogger
-from eps_spine_shared.nhsfundamentals.timeutilities import (
+from eps_spine_shared.nhsfundamentals.time_utilities import (
     TimeFormats,
     convert_spine_date,
     time_now_as_string,

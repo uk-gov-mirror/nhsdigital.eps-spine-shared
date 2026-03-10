@@ -4,10 +4,10 @@ from unittest.case import TestCase
 
 from parameterized.parameterized import parameterized
 
-from eps_spine_shared.nhsfundamentals.timeutilities import (
+from eps_spine_shared.nhsfundamentals.time_utilities import (
     TimeFormats,
-    _guess_common_datetime_format,
     convert_spine_date,
+    guess_common_datetime_format,
     time_now_as_string,
 )
 
@@ -29,7 +29,7 @@ class TimeUtilitiesTests(TestCase):
         """
         Check time_now_as_string returns standard spine format by default matching UTC time.
         """
-        with mock.patch("eps_spine_shared.nhsfundamentals.timeutilities.now") as mock_now:
+        with mock.patch("eps_spine_shared.nhsfundamentals.time_utilities.now") as mock_now:
             mock_now.return_value = datetime.strptime(utc_now, "%Y-%m-%d %H:%M:%S")
             result = time_now_as_string()
             self.assertEqual(expected, result)
@@ -59,14 +59,14 @@ class TimeUtilitiesTests(TestCase):
         """
         Check time format determined from date time string using default settings
         """
-        result = _guess_common_datetime_format(time_string)
+        result = guess_common_datetime_format(time_string)
         self.assertEqual(expected, result)
 
     def test_guess_common_datetime_format_none_if_unknown(self):
         """
         Check time format determined from date time string specifying to return none if could not be determined
         """
-        result = _guess_common_datetime_format("202", False)
+        result = guess_common_datetime_format("202", False)
         self.assertIsNone(result)
 
     def test_guess_common_datetime_format_error_if_unknown_format_unknown(self):
@@ -74,13 +74,13 @@ class TimeUtilitiesTests(TestCase):
         Check time format determined from date time string with an unknown format, with raise error true
         """
         with self.assertRaises(ValueError):
-            _ = _guess_common_datetime_format("202", True)
+            _ = guess_common_datetime_format("202", True)
 
     def test_guess_common_datetime_format_error_if_unknown_format_known(self):
         """
         Check time format determined from date time string with a known format, with raise error true
         """
-        result = _guess_common_datetime_format("2020", True)
+        result = guess_common_datetime_format("2020", True)
         self.assertEqual(TimeFormats.STANDARD_DATE_FORMAT_YEAR_ONLY, result)
 
 

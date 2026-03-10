@@ -24,7 +24,6 @@ class RepeatDispenseRecord(PrescriptionRecord):
 
         Expire any lineItems that have a lower max_repeats number than the instance number
         """
-
         instance_snippets = {}
 
         range_max = int(context.maxRepeats) + 1

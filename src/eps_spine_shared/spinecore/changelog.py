@@ -3,7 +3,7 @@ import re
 import uuid
 
 from eps_spine_shared.errors import EpsSystemError
-from eps_spine_shared.nhsfundamentals.timeutilities import TimeFormats
+from eps_spine_shared.nhsfundamentals.time_utilities import TimeFormats
 
 
 class ChangeLogProcessor(object):
@@ -287,7 +287,6 @@ class PrescriptionsChangeLogProcessor(ChangeLogProcessor):
         Create a change log for this expected change - requires attribute to be set on
         context object
         """
-
         log_of_change = cls.log_for_general_update(
             update_context.epsRecord.get_scn(),
             internal_id,

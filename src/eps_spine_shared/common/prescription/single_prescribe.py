@@ -1,6 +1,6 @@
 from eps_spine_shared.common.prescription import fields
 from eps_spine_shared.common.prescription.record import PrescriptionRecord
-from eps_spine_shared.spinecore.baseutilities import quoted
+from eps_spine_shared.spinecore.base_utilities import quoted
 
 
 class SinglePrescribeRecord(PrescriptionRecord):

@@ -64,7 +64,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0001"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -75,7 +74,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0001"
         self.nad_status["prescriptionDate"] = "20110829"
@@ -86,7 +84,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0001"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -97,7 +94,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0001"
         self.nad_status["prescriptionDate"] = "20110829"
@@ -108,7 +104,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0001"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -120,7 +115,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - check that expiry is not limited by Dispense Window
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0001"
         self.nad_status["prescriptionDate"] = "20120131"
@@ -132,7 +126,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0002"
         self.nad_status["prescriptionDate"] = "20110829"
@@ -143,7 +136,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0002"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -154,7 +146,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0002"
         self.nad_status["prescriptionDate"] = "20110829"
@@ -165,7 +156,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0002"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -176,7 +166,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0002"
         self.nad_status["prescriptionDate"] = "20110829"
@@ -188,7 +177,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0002"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -200,7 +188,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - check that expiry is not limited by Dispense Window
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0002"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -212,7 +199,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0003"
         self.nad_status["prescriptionDate"] = "20110829"
@@ -224,7 +210,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute R1 - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0003"
         self.nad_status["prescriptionDate"] = "20110829"
@@ -237,7 +222,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0003"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -249,7 +233,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute R1 - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0003"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -262,7 +245,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0003"
         self.nad_status["prescriptionDate"] = "20110829"
@@ -274,7 +256,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0003"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -286,7 +267,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0003"
         self.nad_status["prescriptionDate"] = "20110829"
@@ -299,7 +279,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0003"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -312,7 +291,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - check that expiry date is not limited by Dispense Window
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0003"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -325,7 +303,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - no claim window falls before expiry
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0003"
         self.nad_status["prescriptionDate"] = "20111031"
@@ -338,7 +315,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0004"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -350,7 +326,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0004"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -362,7 +337,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0004"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -374,7 +348,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0005"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -387,7 +360,6 @@ class NextActivityGeneratorTest(TestCase):
         Specific test for migrated data scenario where completionDate is false not a valid
         date.
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0005"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -400,7 +372,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0005"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -412,7 +383,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0005"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -424,7 +394,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0006"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -438,7 +407,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute R1 - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0006"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -453,7 +421,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 31st -> 1st
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0006"
         self.nad_status["prescriptionDate"] = "20110331"
@@ -467,7 +434,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0006"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -481,7 +447,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0007"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -493,7 +458,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0007"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -505,7 +469,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0007"
         self.nad_status["prescriptionDate"] = "20110729"
@@ -517,7 +480,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0008"
         self.nad_status["prescriptionDate"] = "20110731"
@@ -530,7 +492,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Acute - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0001"
         self.nad_status["prescriptionStatus"] = "0009"
         self.nad_status["prescriptionDate"] = "20110731"
@@ -543,7 +504,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0009"
         self.nad_status["prescriptionDate"] = "20110731"
@@ -556,7 +516,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - expiry falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0009"
         self.nad_status["prescriptionDate"] = "20110731"
@@ -569,7 +528,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - Nominated Release before Expiry
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0000"
         self.nad_status["prescriptionDate"] = "20120731"
@@ -581,7 +539,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Prescribe - Expiry before Nominated Release
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0002"
         self.nad_status["prescriptionStatus"] = "0000"
         self.nad_status["prescriptionDate"] = "20110731"
@@ -593,7 +550,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - Nominated Release falls 29th Feb 2012
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0000"
         self.nad_status["prescriptionDate"] = "20111101"
@@ -605,7 +561,6 @@ class NextActivityGeneratorTest(TestCase):
         Unit test for Next Activity and Next Activity Date Generator:
         Repeat Dispense - Expiry falls 30th Sep 2011
         """
-
         self.nad_status["prescriptionTreatmentType"] = "0003"
         self.nad_status["prescriptionStatus"] = "0000"
         self.nad_status["prescriptionDate"] = "20110331"

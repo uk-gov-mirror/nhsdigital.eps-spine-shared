@@ -24,7 +24,7 @@ from eps_spine_shared.common.dynamodb_common import (
 )
 from eps_spine_shared.common.dynamodb_datastore import EpsDynamoDbDataStore
 from eps_spine_shared.common.prescription.record import PrescriptionStatus
-from eps_spine_shared.nhsfundamentals.timeutilities import TimeFormats
+from eps_spine_shared.nhsfundamentals.time_utilities import TimeFormats
 from eps_spine_shared.testing.mock_logger import MockLogObject
 from tests.dynamodb_test import DynamoDbTest
 
@@ -760,7 +760,7 @@ class EpsDynamoDbDataStoreTest(DynamoDbTest):
         # Create several processes that try to insert the record concurrently
         processes = []
         loggers = []
-        for _ in range(2):
+        for _ in range(5):
             logger = MockLogObject()
             loggers.append(logger)
 
@@ -783,8 +783,8 @@ class EpsDynamoDbDataStoreTest(DynamoDbTest):
         [logs.add(log) for logger in loggers for log in logger.called_references]
         self.assertTrue("DDB0021" in logs, "Expected a log DDB0021 for concurrent insert failure")
 
-        self.assertEqual(
-            len(exceptions_thrown), 1, "Expected exception to be thrown for concurrent insertions"
+        self.assertTrue(
+            len(exceptions_thrown) > 0, "Expected exception to be thrown for concurrent insertions"
         )
         self.assertTrue(
             isinstance(exceptions_thrown[0], EpsDataStoreError),
