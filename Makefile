@@ -1,13 +1,10 @@
 SHELL:=/usr/bin/env bash -O globstar
 .SHELLFLAGS = -ec
 
-.PHONY: build check-licenses clean deep-clean format install lint python-pre-commit reinstall-poetry test
+.PHONY: build clean deep-clean format install lint python-pre-commit reinstall-poetry test
 
 build:
 	poetry build
-
-check-licenses:
-	scripts/check_python_licenses.sh
 
 clean:
 	rm -rf dist
@@ -40,3 +37,6 @@ reinstall-poetry:
 test: build
 	poetry run python -m coverage run --data-file=.coverage/coverage -m pytest tests && \
 	poetry run python -m coverage xml --data-file=.coverage/coverage -o .coverage/info.xml
+
+%:
+	@$(MAKE) -f /usr/local/share/eps/Mk/common.mk $@

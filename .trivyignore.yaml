@@ -1,0 +1,12 @@
+vulnerabilities:
+  - id: CVE-2025-66418
+    statement: urllib3 - can't upgrade due to spine version restraints
+  - id: CVE-2025-66471
+    statement: urllib3 - can't upgrade due to spine version restraints
+  - id: CVE-2026-21441
+    statement: urllib3 - can't upgrade due to spine version restraints
+  - id: CVE-2025-50181
+    statement: urllib3 - can't upgrade due to spine version restraints
+  - id: CVE-2026-26007
+    statement: cryptography (moto dependency) - will eventually update via dependabot
+    expired_at: 2027-01-01

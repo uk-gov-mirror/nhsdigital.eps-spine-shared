@@ -4,19 +4,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  get_asdf_version:
-    name: Get asdf Version
-    runs-on: ubuntu-22.04
-    outputs:
-      version: ${{ steps.get-asdf-version.outputs.version }}
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
-        name: Checkout source code
-
-      - name: Get asdf version
-        id: get-asdf-version
-        uses: ./.github/actions/get_asdf_version
-
   get_pypi_token:
     name: Get PyPI Token for Trusted Publishing
     runs-on: ubuntu-22.04
@@ -31,41 +18,49 @@ jobs:
       - name: Get PyPI token
         id: get_pypi_token
         uses: ./.github/actions/get_pypi_token
-
+  get_config_values:
+    uses: NHSDigital/eps-common-workflows/.github/workflows/get-repo-config.yml@cd3cf9fa582d391ce9c50b10c43155eb48ca65e3
+    with:
+      verify_published_from_main_image: false
   quality_checks:
     name: Quality Checks
-    needs: get_asdf_version
-    uses: NHSDigital/eps-common-workflows/.github/workflows/quality-checks.yml@3166a790ef94af847ffcafc6b9fbadbf4c56f6d0
+    needs: get_config_values
+    uses: NHSDigital/eps-common-workflows/.github/workflows/quality-checks-devcontainer.yml@cd3cf9fa582d391ce9c50b10c43155eb48ca65e3
     with:
-      asdfVersion: ${{ needs.get_asdf_version.outputs.version }}
-      reinstall_poetry: true
+      pinned_image: ${{ needs.get_config_values.outputs.pinned_image }}
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   get_next_version:
     name: Get Next Version Number for Poetry
-    uses: NHSDigital/eps-common-workflows/.github/workflows/tag-release.yml@3166a790ef94af847ffcafc6b9fbadbf4c56f6d0
-    needs: [get_asdf_version, quality_checks]
+    uses: NHSDigital/eps-common-workflows/.github/workflows/tag-release-devcontainer.yml@cd3cf9fa582d391ce9c50b10c43155eb48ca65e3
+    needs: [get_config_values, quality_checks]
     with:
-      asdfVersion: ${{ needs.get_asdf_version.outputs.version }}
+      pinned_image: ${{ needs.get_config_values.outputs.pinned_image }}
       branch_name: main
       dry_run: true
 
   build:
     name: Build Package and Upload as Artifact
     runs-on: ubuntu-22.04
-    needs: [get_asdf_version, get_next_version]
+    container:
+      image: ${{ needs.get_config_values.outputs.pinned_image }}
+      options: --user 1001:1001 --group-add 128
+    defaults:
+      run:
+        shell: bash
+    needs: [get_config_values, get_next_version]
     outputs:
       artifact_id: ${{ steps.upload-artifact.outputs.artifact-id }}
     steps:
+      - name: copy .tool-versions
+        run: |
+          cp /home/vscode/.tool-versions "$HOME/.tool-versions"
       - name: Git checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
-
-      - name: Install dependencies
-        uses: ./.github/actions/install_dependencies
-        with:
-          asdf_version: ${{ needs.get_asdf_version.outputs.version }}
-
+        uses: actions/checkout@v6
+      - name: make install
+        run: |
+          make install
       - name: Build package
         run: |
           poetry version "$NEXT_VERSION"
@@ -85,10 +80,10 @@ jobs:
 
   tag_release:
     name: Tag Release
-    uses: NHSDigital/eps-common-workflows/.github/workflows/tag-release.yml@3166a790ef94af847ffcafc6b9fbadbf4c56f6d0
-    needs: [build, get_asdf_version, get_pypi_token]
+    uses: NHSDigital/eps-common-workflows/.github/workflows/tag-release-devcontainer.yml@cd3cf9fa582d391ce9c50b10c43155eb48ca65e3
+    needs: [build, get_config_values, get_pypi_token]
     with:
-      asdfVersion: ${{ needs.get_asdf_version.outputs.version }}
+      pinned_image: ${{ needs.get_config_values.outputs.pinned_image }}
       branch_name: main
       extra_artifact_name: eps_spine_shared.zip
       extra_artifact_id: ${{ needs.build.outputs.artifact_id }}

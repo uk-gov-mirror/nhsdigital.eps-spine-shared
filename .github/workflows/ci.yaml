@@ -6,25 +6,16 @@ on:
       - main
 
 jobs:
-  get_asdf_version:
-    name: Get asdf Version
-    runs-on: ubuntu-22.04
-    outputs:
-      version: ${{ steps.get_asdf_version.outputs.version }}
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
-        name: Checkout source code
-
-      - name: Get asdf version
-        id: get_asdf_version
-        uses: ./.github/actions/get_asdf_version
+  get_config_values:
+    uses: NHSDigital/eps-common-workflows/.github/workflows/get-repo-config.yml@cd3cf9fa582d391ce9c50b10c43155eb48ca65e3
+    with:
+      verify_published_from_main_image: true
 
   quality_checks:
     name: Quality Checks
-    needs: get_asdf_version
-    uses: NHSDigital/eps-common-workflows/.github/workflows/quality-checks.yml@3166a790ef94af847ffcafc6b9fbadbf4c56f6d0
+    needs: get_config_values
+    uses: NHSDigital/eps-common-workflows/.github/workflows/quality-checks-devcontainer.yml@cd3cf9fa582d391ce9c50b10c43155eb48ca65e3
     with:
-      asdfVersion: ${{ needs.get_asdf_version.outputs.version }}
-      reinstall_poetry: true
+      pinned_image: ${{ needs.get_config_values.outputs.pinned_image }}
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

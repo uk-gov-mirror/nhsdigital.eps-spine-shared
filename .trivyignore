@@ -1,8 +1,0 @@
-# urllib3 - can't upgrade due to spine version restraints
-CVE-2025-66418
-CVE-2025-66471
-CVE-2026-21441
-CVE-2025-50181
-
-# cryptography (moto dependency) - will eventually update via dependabot
-CVE-2026-26007
