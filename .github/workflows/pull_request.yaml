@@ -36,7 +36,7 @@ jobs:
   quality_checks:
     name: Quality Checks
     needs: get_config_values
-    uses: NHSDigital/eps-common-workflows/.github/workflows/quality-checks-devcontainer.yml@cd3cf9fa582d391ce9c50b10c43155eb48ca65e3
+    uses: NHSDigital/eps-common-workflows/.github/workflows/quality-checks-devcontainer.yml@5ac2707dd9cd60ad127275179495b9c890d74711
     with:
       pinned_image: ${{ needs.get_config_values.outputs.pinned_image }}
     secrets:
