@@ -2,4 +2,4 @@ rules:
   unpinned-images:
     # these workflows use unpinned images because they are using a full image passed in that contains the tag
     ignore:
-      - release.yaml:65:7
+      - release.yaml:65:18
