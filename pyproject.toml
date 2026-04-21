@@ -14,7 +14,7 @@ requires-python = ">=3.10.12"
 dependencies = [
     "boto3 (>=1.26.159,<2.0.0)",
     "botocore (>=1.42.90,<2.0.0)",
-    "lxml (==4.9.1)",
+    "lxml (==6.1.0)",
     "python-dateutil (>=2.7.0.post0,<3.0.0)",
     "pytz (==2020.4)",
     "simplejson (>=3.17.2,<4.0.0)",
