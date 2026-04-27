@@ -48,7 +48,7 @@ jobs:
 
   get_next_version:
     name: Get Next Version Number for Poetry
-    uses: NHSDigital/eps-common-workflows/.github/workflows/tag-release-devcontainer.yml@e798d5aee897de6f7dc387dd5623fcd9ba4c8929
+    uses: NHSDigital/eps-common-workflows/.github/workflows/tag-release-devcontainer.yml@ba4bcd7fa2367cc44c9078adb96a654236d3691a
     needs: [get_config_values, quality_checks]
     permissions:
       id-token: write
@@ -103,7 +103,7 @@ jobs:
 
   tag_release:
     name: Tag Release
-    uses: NHSDigital/eps-common-workflows/.github/workflows/tag-release-devcontainer.yml@e798d5aee897de6f7dc387dd5623fcd9ba4c8929
+    uses: NHSDigital/eps-common-workflows/.github/workflows/tag-release-devcontainer.yml@ba4bcd7fa2367cc44c9078adb96a654236d3691a
     needs: [build, get_config_values, get_pypi_token]
     with:
       pinned_image: ${{ needs.get_config_values.outputs.pinned_image }}
